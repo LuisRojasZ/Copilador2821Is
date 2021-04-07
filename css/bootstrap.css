@@ -43,7 +43,9 @@
     scroll-behavior: smooth;
   }
 }
-
+#fondo-radial {
+  background: radial-gradient(left bottom, circle farthest-side, #f7ff08 0%, #21ad11 50%, #00a3ef 80%);
+}
 body {
   margin: 0;
   font-family: var(--bs-font-sans-serif);

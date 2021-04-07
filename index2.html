@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador Lexico</title>
+</head>
+<body>
+    <textarea name="entrada" id="entrada" cols="30" rows="10"></textarea>
+    <button id="val">Validar</button>
+    <textarea name="salida" id="salida" cols="30" rows="10"></textarea>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $('#val').click(function(){
+           var texto = $('#entrada').val();
+           $('#salida').html("");
+           var arr = texto.split('');
+            var abiertos = 0;
+            var cerrados = 0;
+        var arr2 = Array();
+           arr.forEach(element =>
+           {
+               if(/^[a-z]|[A-Z]$/.test(element))
+               {
+                   arr2.push(element+" es una constante");
+               }
+
+               if(/^[0-9]$/.test(element))
+               {
+                   arr2.push(element+" es numerico");
+               }
+
+               if(/^[+|*|/]|[-]$/.test(element))
+               {
+                  arr2.push(element+" es un operador");
+               }
+
+               if(/^[(]$/.test(element))
+               {
+                arr2.push(element+" es una apertura");
+                abiertos++;
+               }
+
+               if(/^[)]$/.test(element))
+               {
+                arr2.push(element+" es el cierre");
+                cerrados++;
+               }
+           });
+           console.log(abiertos+" "+cerrados);
+           if(abiertos != cerrados){
+                   arr2.push(texto+" error en los parentesis");
+               }
+
+            arr2.forEach(ele => {
+                $("#salida").append(ele+"\n");
+            })
+        })
+    </script>
+</body>
+</html>
